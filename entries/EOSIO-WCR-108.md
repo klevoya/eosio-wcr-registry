@@ -1,0 +1,36 @@
+<br/>
+
+## Name: Unfair Rollback
+
+### Unique Identifier: EOSIO-WCR-108
+
+### Vulnerability Rating: Medium
+
+### Relationship: [CWE-1021: Improper Restriction of Rendered UI Layers or Frames (Clickjacking)](https://cwe.mitre.org/data/definitions/1021.html)
+
+### Background
+A vulnerable smart contract that relies on users to transfer EOS before a pseudo-random outcome is revealed based on an on-chain state value like the _tapos_block_prefix_. These smart contracts contain a reveal function that is reachable from the _apply_ function (entry point) and are often used as lottery DApps where the winner is a player whose pick matches the generated pseudorandom value. 
+
+### Summary
+An implementation of the _reveal_ function in a vulnerable DApp, where all _actions_ are *merged* into a *single transaction* when revealing the winner of the lottery. This merged reveal, allows the attacker to utilise a malicious intermediate contract between the vulnerable DApp and the official _eosio.token_ contract and abuse the _revert_ operation to repeatedly revert all losing guesses, until a winning is made.
+
+### Diagram
+![token transfer](images/token_transfer.png)
+
+> **Figure 1.** Lifecycle of a token transfer
+<br/>
+
+## Detailed Description
+The attacker invokes the _transfer_ function of their malicious intermediate contract to forward a genuine EOS token transfer to the vulnerable DApp and make a successful guess for 1 round of the lottery.
+
+Once the tokens have successfully transferred to the victim DApp, the intermediate contract is notified of a token deduction by the _eosio.token_ contract within the very same transaction.
+
+The game then completes the round, by matching the generated pseudo-random outcome to the best guess and sending the prize _(EOS tokens)_ as winnings to the elected winner _(contract)_.
+
+The malicious intermediate contract essentially checks and tracks the balance before and after each round of the game, triggers the _rollback_ operation unless it detects that its balance has increased _(winning guess)_ and simply tries again in the next round.
+
+This means, for every losing round, the attacker ensures that the smart contract states and balance table is reverted to the original, and the losing token transfer transaction is not recorded on the EOS MainNet. 
+
+This _collision-like loop_ allows the attacker to _arbitrage_ the entire prize money from the vulnerable lottery DApp at statistically insignificant cost.
+ <br/>
+ <br/>
