@@ -88,7 +88,7 @@ The result is that the attacker’s forged EOS tokens are deemed sufficient, to 
 ### Severity & Financial Impact
 | Number of Verified Attacks | Attacker / Victim Ratio | Total Financial Loss
 | ------ | ------ | ------
-| 8 / 9 (88.88%) | 10 : 9 | $ 652,428.48
+| **8** / 9 (88.88%) | 10 : 9 | $ 652,428.48
 
 <br/>
 
@@ -174,7 +174,7 @@ Description: It implements the interface ExecDetector
 ### Efficacy
 | Vulnerable Smart Contracts | Vulnerable Smart Contract Versions
 | ------ | ------
-| 272 / 5, 574 (4.88%) | 1,457 / 53,666 (2.71%)
+| **272** / 5,574 (4.88%) | **1,457** / 53,666 (2.71%)
 
 <br/>
 
@@ -218,6 +218,12 @@ void apply(uint64_t receiver, uint64_t code, uint64_t action)
 	check(get_first_receiver() == name("eosio.token"), "forged token");
 }
 ```
+
+#### Patching Statistics
+| Patch % | Patch Time
+| ------ | ------
+| **65** / 272 (4.88%) | **14.85** days
+
 
 <br/>
 

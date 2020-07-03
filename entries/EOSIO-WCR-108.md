@@ -85,6 +85,20 @@ minute limit during symbolic execution. Manual location of the vulnerable **func
 
 <br/>
 
+### Efficacy
+| Vulnerable Smart Contracts | Vulnerable Smart Contract Versions
+| ------ | ------
+| **84** / 913 (9.20%) | **1,149** / 17,394 (6.61%)
+
+<br/>
+
+## Remediation
+
+### Patching Statistics
+| Patch % | Patch Time
+| ------ | ------
+| **56** / 84 (66.67%) | **4.24** days
+
 ## References
 
 - [Security Analysis of EOSIO Smart Contracts by EOSAFE](https://arxiv.org/abs/2003.06568)
