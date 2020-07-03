@@ -8,10 +8,10 @@
 
 ### Relationship: [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)
 
-### Background
+## Background
 The ABI dispatcher/forwarder is the entry point which allows EOS smart contracts to listen to incoming token transfer events, like EOS tokens from the _eosio.token_ contract account, as well as normal interactions with the smart contract. A vulnerable smart contract that does not bind _action_ and _code_ to meet security requirements, fails to avoid abnormal and illegal calls.
 
-### Summary
+## Summary
 An implementation of the _(apply)_ function in a **victim** smart contract that does not verify the code parameter properly, and is **deceived** into **executing** smart-contract logic of **monetary value** on receipt of fake _EOS_ tokens, where the _transfer_ action roots from a token issued by an entity **other than** _eosio.token_. There are many similar tokens on both the EOS mainnet and other EOSIO side chains like WAX/TELOS, that are susceptible to the same attack.
 
 ### Diagram
