@@ -67,11 +67,21 @@ which contain the statement _send_inline_ to narrow down _reveal_ functions that
 | ------ | ------ | ------ | ------ | ------ 
 | 18 | 9 : 9 | 100.00 % | 88.89 % | 94.12 %
 
+<br/>
+
 > **Precision** _(also called positive predictive value)_ is the fraction of relevant instances among the retrieved instances
 
 > **Recall** _(also known as sensitivity)_ is the fraction of the total amount of relevant instances that were actually retrieved
 
 > **F1-measure** is a measure of a test's accuracy
+
+<br/>
+
+| :warning: **The only false negative** was for the _fairdogegame/betdogewallt_ smart contract |
+| --- |
+
+**Reason:** Time out due to the hard 5
+minute limit during symbolic execution. Manual location of the vulnerable **func73** function garners the correct result.
 
 <br/>
 

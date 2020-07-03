@@ -124,6 +124,8 @@ A successful attack definition is where true EOS tokens are extracted from a vul
 | ------ | ------ | ------ | ------ | ------ 
 | 14 | 7 : 7 | 100.00 % | 100.00 % | 100.00 %
 
+<br/>
+
 > **Precision** _(also called positive predictive value)_ is the fraction of relevant instances among the retrieved instances
 
 > **Recall** _(also known as sensitivity)_ is the fraction of the total amount of relevant instances that were actually retrieved
