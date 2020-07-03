@@ -18,14 +18,16 @@ An implementation of the _(apply)_ function in a **victim** smart contract that 
 ![token transfer](images/token_transfer.png)
 
 > **Figure 1.** Lifecycle of a token transfer
+
 <br/>
 
 ## Detailed Description
 In EOSIO, a token contract can be deployed on any account and the uniqueness of token symbols is not required. This means the _ticker namespace_ is _independent_ from the _account namespace_ and *not globally unique*. The same token symbol can be created multiple times because token symbols are only unique locally within one contract but not all contracts. Only, the extended_symbol, that combines a _symbol code_ with its _precision_ within a contract account is globally unique. 
 
 There are currently multiple EOS, BTC and EOSDAC tokens on chain. The _eosio.token_ contract does not enforce unique tickers, even for the network token. Each account which runs an eosio.token contract forms a separate namespace. This is to say that [EOS@eosio.token](https://eosauthority.com/account/eosio.token?network=eos) is different from [EOS@eosioleoteam](https://eosauthority.com/account/eosioleoteam) and [EOS@indianastate](https://eosauthority.com/account/indianastate?network=eos) as shown below:
+ 
  <br/>
- <br/>
+
 | Issuer | URL | Max Supply | Issued | 
 | ------ | ------ | ------ | ------ |
 | eosio.token | [/account/eosio.token?network=eos](https://eosauthority.com/account/eosio.token?network=eos) | 1,020,411,943 EOS | 933,711,931 EOS |
@@ -36,13 +38,14 @@ There are currently multiple EOS, BTC and EOSDAC tokens on chain. The _eosio.tok
 
 Source: [EOS Monitor](https://eosmonitor.io/account/eosio.saving)
 
- <br/>
+<br/>
 Here is an example of an account creating transaction for a replica EOS token creation: 
 <br/>
 <br/>
 
 [EOS Park Transaction](https://eospark.com/tx/89a0085987fdb407c628303aa091334c6f28a1c48efe4b0e6e0e4d3bacd0b40e)
 
+<br/>
 
 ## Vulnerability
 EOS Smart contracts that use generic notification handlers (using the * wildcard to handle transfer notifications from any contract) often forget to check the received token symbol’s contract account to prevent against this token forgery attack. 
@@ -60,6 +63,8 @@ void on_transfer(name from, name to, asset quantity, string memo)
 	check(quantity.symbol == EOS_SYMBOL, "wrong symbol");
 } 
 ```
+
+<br/>
 
 ## Attack 
 
@@ -84,6 +89,8 @@ The result is that the attacker’s forged EOS tokens are deemed sufficient, to 
 | Number of Verified Attacks | Attacker / Victim Ratio | Total Financial Loss
 | ------ | ------ | ------
 | 8 / 9 (88.88%) | 10 : 9 | $ 652,428.48
+
+<br/>
 
 ## Detection
 
@@ -110,6 +117,18 @@ A successful attack definition is where true EOS tokens are extracted from a vul
    * the **action** variable points to _transfer_ function _(action == transfer)_
    * the **code** variable is not used to perform any checking 
 5. **Filter** out only valuable _transfer_ functions if both of the above conditions are met, since not all transfer functions are able to affect on-chain state, and if such a function exists, the smart contract is _tagged_ to have a **Forged Token Transfer** vulnerability
+
+##### EOSSAFE Evaluation Benchmark
+
+| Total Samples | Vulnerable : Safe | Precision | Recall | F1-measure 
+| ------ | ------ | ------ | ------ | ------ 
+| 14 | 7 : 7 | 100.00 % | 100.00 % | 100.00 %
+
+> **Precision** _(also called positive predictive value)_ is the fraction of relevant instances among the retrieved instances
+
+> **Recall** _(also known as sensitivity)_ is the fraction of the total amount of relevant instances that were actually retrieved
+
+> **F1-measure** is a measure of a test's accuracy
 
 #### Method 2
 > EvulHunter → WASM Simulator + Detector Engine
@@ -155,6 +174,7 @@ Description: It implements the interface ExecDetector
 | ------ | ------
 | 272 / 5, 574 (4.88%) | 1,457 / 53,666 (2.71%)
 
+<br/>
 
 ## Remediation
 ### Risk Reduction
@@ -196,6 +216,8 @@ void apply(uint64_t receiver, uint64_t code, uint64_t action)
 	check(get_first_receiver() == name("eosio.token"), "forged token");
 }
 ```
+
+<br/>
 
 ## References
 
