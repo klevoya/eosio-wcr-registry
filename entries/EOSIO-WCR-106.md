@@ -222,7 +222,7 @@ void apply(uint64_t receiver, uint64_t code, uint64_t action)
 #### Patching Statistics
 | Patch % | Patch Time
 | ------ | ------
-| **65** / 272 (4.88%) | **14.85** days
+| **65** / 272 (23.90%) | **14.85** days
 
 
 <br/>
