@@ -1,0 +1,9 @@
+*.txt
+*.cmake
+node_modules
+CMakeFiles
+Makefile
+**/build/*
+!**/build/*.wasm
+!**/build/*.abi
+!CMakeLists.txt

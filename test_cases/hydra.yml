@@ -1,0 +1,10 @@
+contracts:
+  template:
+    abi: template/build/vulnerable.abi
+    name: template
+    wasm: template/build/vulnerable.wasm
+  wcr-105:
+    abi: wcr-105/build/vulnerable.abi
+    name: wcr-105
+    wasm: wcr-105/build/vulnerable.wasm
+options: null

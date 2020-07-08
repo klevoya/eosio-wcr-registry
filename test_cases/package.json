@@ -1,0 +1,19 @@
+{
+  "name": "fixed",
+  "version": "1.0.0",
+  "description": "Testing fixed smart contract with Hydra",
+  "main": "",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "@klevoya/hydra": "*",
+    "jest": "^25.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": ""
+}
