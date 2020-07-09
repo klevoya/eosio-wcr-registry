@@ -9,11 +9,24 @@ if(EOSIO_CDT_ROOT STREQUAL "" OR NOT EOSIO_CDT_ROOT)
    find_package(eosio.cdt)
 endif()
 
+# ExternalProject_Add(
+#    template
+#    PREFIX template/build
+#    SOURCE_DIR template
+#    BINARY_DIR template/build
+#    CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${EOSIO_CDT_ROOT}/lib/cmake/eosio.cdt/EosioWasmToolchain.cmake
+#    UPDATE_COMMAND ""
+#    PATCH_COMMAND ""
+#    TEST_COMMAND ""
+#    INSTALL_COMMAND ""
+#    BUILD_ALWAYS 1
+# )
+
 ExternalProject_Add(
-   template
-   PREFIX template/build
-   SOURCE_DIR template
-   BINARY_DIR template/build
+   wcr-105
+   PREFIX wcr-105/build
+   SOURCE_DIR wcr-105
+   BINARY_DIR wcr-105/build
    CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${EOSIO_CDT_ROOT}/lib/cmake/eosio.cdt/EosioWasmToolchain.cmake
    UPDATE_COMMAND ""
    PATCH_COMMAND ""
@@ -23,10 +36,23 @@ ExternalProject_Add(
 )
 
 ExternalProject_Add(
-   wcr-105
-   PREFIX wcr-105/build
-   SOURCE_DIR wcr-105
-   BINARY_DIR wcr-105/build
+   wcr-106
+   PREFIX wcr-106/build
+   SOURCE_DIR wcr-106
+   BINARY_DIR wcr-106/build
+   CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${EOSIO_CDT_ROOT}/lib/cmake/eosio.cdt/EosioWasmToolchain.cmake
+   UPDATE_COMMAND ""
+   PATCH_COMMAND ""
+   TEST_COMMAND ""
+   INSTALL_COMMAND ""
+   BUILD_ALWAYS 1
+)
+
+ExternalProject_Add(
+   wcr-107
+   PREFIX wcr-107/build
+   SOURCE_DIR wcr-107
+   BINARY_DIR wcr-107/build
    CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${EOSIO_CDT_ROOT}/lib/cmake/eosio.cdt/EosioWasmToolchain.cmake
    UPDATE_COMMAND ""
    PATCH_COMMAND ""

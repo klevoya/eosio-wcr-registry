@@ -4,10 +4,10 @@
 
 using namespace eosio;
 
-class [[eosio::contract("fixed")]] fixed : public contract {
+class [[eosio::contract("fix")]] fix : public contract {
 public:
   using contract::contract;
-  fixed(eosio::name receiver, eosio::name code,
+  fix(eosio::name receiver, eosio::name code,
         eosio::datastream<const char *> ds)
       : contract(receiver, code, ds) {}
 

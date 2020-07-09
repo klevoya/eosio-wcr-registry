@@ -1,10 +1,18 @@
 contracts:
-  template:
-    abi: template/build/vulnerable.abi
-    name: template
-    wasm: template/build/vulnerable.wasm
   wcr-105:
     abi: wcr-105/build/vulnerable.abi
     name: wcr-105
     wasm: wcr-105/build/vulnerable.wasm
+  wcr-106:
+    abi: wcr-106/build/vulnerable.abi
+    name: wcr-106
+    wasm: wcr-106/build/vulnerable.wasm
+  wcr-107:
+    abi: wcr-107/build/vulnerable.abi
+    name: wcr-107
+    wasm: wcr-107/build/vulnerable.wasm
+  wcr-107-attacker:
+    abi: wcr-107/build/attacker.abi
+    name: wcr-107-attacker
+    wasm: wcr-107/build/attacker.wasm
 options: null

@@ -5,6 +5,8 @@ const config = loadConfig("hydra.yml");
 describe("wcr-105", () => {
   let blockchain = new Blockchain(config);
   let vuln = blockchain.createAccount(`vulnerable`);
+  let user = blockchain.createAccount(`user`);
+  let attacker = blockchain.createAccount(`attacker`);
 
   beforeAll(async () => {
     vuln.setContract(blockchain.contractTemplates[`wcr-105`]);
@@ -13,11 +15,11 @@ describe("wcr-105", () => {
         {
           permission: {
             actor: vuln.accountName,
-            permission: `eosio.code`
+            permission: `eosio.code`,
           },
-          weight: 1
-        }
-      ]
+          weight: 1,
+        },
+      ],
     });
   });
 
@@ -25,13 +27,24 @@ describe("wcr-105", () => {
     expect.assertions(1);
 
     await vuln.contract.insert({
-      value: "123456"
+      user: user.accountName,
+      display_name: `User 1`,
     });
 
-    expect(vuln.getTableRowsScoped(`dummy`)[`vulnerable`]).toEqual([
+    // attacker can change user1's name
+    await vuln.contract.update(
       {
-        value: "123456"
-      }
+        user: user.accountName,
+        display_name: `Evil 1`,
+      },
+      [{ actor: attacker.accountName, permission: `active` }]
+    );
+
+    expect(vuln.getTableRowsScoped(`user`)[vuln.accountName]).toEqual([
+      {
+        username: user.accountName,
+        display_name: `Evil 1`
+      },
     ]);
   });
 });

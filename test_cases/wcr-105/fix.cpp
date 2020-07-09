@@ -4,10 +4,10 @@
 
 using namespace eosio;
 
-class [[eosio::contract("vulnerable")]] vulnerable : public contract {
+class [[eosio::contract("fix")]] fix : public contract {
 public:
   using contract::contract;
-  vulnerable(eosio::name receiver, eosio::name code,
+  fix(eosio::name receiver, eosio::name code,
              eosio::datastream<const char *> ds)
       : contract(receiver, code, ds) {}
 
@@ -21,6 +21,8 @@ public:
   typedef eosio::multi_index<"user"_n, user> users_t;
 
   ACTION insert(name user, std::string display_name) {
+    require_auth(user);
+
     users_t users_table(get_self(), get_self().value);
     users_table.emplace(get_self(), [&](auto &x) {
       x.username = user;
@@ -29,6 +31,8 @@ public:
   }
 
   ACTION update(name user, std::string display_name) {
+    require_auth(user);
+
     users_t users_table(get_self(), get_self().value);
     auto user_itr = users_table.require_find(user.value, "user does not exist");
     users_table.modify(user_itr, eosio::same_payer, [&](auto &x) {

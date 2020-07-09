@@ -9,7 +9,7 @@ if(EOSIO_CDT_ROOT STREQUAL "" OR NOT EOSIO_CDT_ROOT)
 endif()
 
 add_contract( vulnerable vulnerable vulnerable.cpp )
-add_contract( fixed fixed fixed.cpp )
+add_contract( fix fix fix.cpp )
 # add_contract( ${PROJ_NAME} ${PROJ_NAME} ${PROJ_NAME}.cpp )
 # target_include_directories( ${PROJ_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/../include ${CMAKE_SOURCE_DIR}/../.. )
 # target_ricardian_directory( ${PROJ_NAME} ${CMAKE_SOURCE_DIR}/../ricardian )
