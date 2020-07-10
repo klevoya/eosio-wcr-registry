@@ -24,6 +24,22 @@ Due to missing authorization controls, a vulnerable smart contract **grants auth
 ## Vulnerability
 EOS Smart contracts with no authority requirement allow **untrusted** accounts to call and enter actions effortlessly and perform critical operations such as modifying the underlying database or calling functions of other contracts on behalf of the vulnerable contract. This absence of permission authorization is tagged as a **missing authorization check** vulnerability.
 
+### Sample Code 
+The vulnerable smart contract transfer action allows anyone to call the action. 
+
+```c++
+void token::transfer( account_name from, account_name to, asset quantity)
+{
+   auto sym = quantity.symbol.name();
+   require_recipient( from );
+   require_recipient( to );
+   auto payer = has_auth( to ) ? to : from;
+   sub_balance( from, quantity );
+   add_balance( to, quantity, payer );
+}
+```
+In order to resolve it, the **require_auth(from);** statement is needed to authorize the payer to call the action
+
 ### Methodology
 #### EOSSAFE Evaluation Benchmark
 
