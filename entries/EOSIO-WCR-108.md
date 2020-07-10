@@ -15,7 +15,7 @@ A vulnerable smart contract that relies on users to transfer EOS before a pseudo
 
 <br/>
 
-## Summary
+### Summary
 An implementation of the _reveal_ function in a vulnerable DApp, where all _actions_ are *merged* into a *single transaction* when revealing the winner of the lottery. This merged reveal, allows the attacker to utilise a evil intermediate contract between the vulnerable DApp and the official _eosio.token_ contract and abuse the _revert_ operation to repeatedly revert all losing guesses, until a winning is made.
 
 ### Diagram
