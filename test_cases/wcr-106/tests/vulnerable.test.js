@@ -27,7 +27,7 @@ describe("wcr-106", () => {
         accounts: [
           {
             permission: {
-              actor: vuln.accountName,
+              actor: acc.accountName,
               permission: `eosio.code`,
             },
             weight: 1,

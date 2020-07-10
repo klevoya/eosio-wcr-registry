@@ -11,18 +11,17 @@ const eosStatsFixture = {
     },
   ],
 };
-describe("wcr-107", () => {
+describe("wcr-108", () => {
   let blockchain = new Blockchain(config);
   let eosioToken = blockchain.createAccount(`eosio.token`);
   let vuln = blockchain.createAccount(`vulnerable`);
   let attacker = blockchain.createAccount(`attacker`);
-  let attackerContract = blockchain.createAccount(`attacker2`);
 
   beforeAll(async () => {
-    vuln.setContract(blockchain.contractTemplates[`wcr-107`]);
+    vuln.setContract(blockchain.contractTemplates[`wcr-108`]);
     eosioToken.setContract(blockchain.contractTemplates[`eosio.token`]);
-    attackerContract.setContract(blockchain.contractTemplates[`wcr-107-attacker`]);
-    [vuln, eosioToken, attackerContract].forEach((acc) =>
+    attacker.setContract(blockchain.contractTemplates[`wcr-108-attacker`]);
+    [vuln, eosioToken, attacker].forEach((acc) =>
       acc.updateAuth(`active`, `owner`, {
         accounts: [
           {
@@ -40,44 +39,26 @@ describe("wcr-107", () => {
     await eosioToken.loadFixtures(`accounts`, {
       [vuln.accountName]: [
         {
-          balance: "100.0000 EOS",
+          balance: "10000.0000 EOS",
         },
       ],
       [attacker.accountName]: [
         {
-          balance: "10000.0000 EOS",
+          balance: "10.0000 EOS",
         },
       ],
     });
   });
 
   it("can perform the attack", async () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
-    await eosioToken.contract.transfer(
-      {
-        from: attacker.accountName,
-        to: attackerContract.accountName,
-        quantity: "10000.0000 EOS",
-        memo: "sending tokens to own account but fake notification along the way",
-      },
-      [{ actor: attacker.accountName, permission: `active` }]
-    );
-
-    // attacker steals all real EOS tokens
-    expect(eosioToken.getTableRowsScoped(`accounts`)[vuln.accountName]).toEqual(
-      [
-        {
-          balance: `0.0000 EOS`,
-        },
-      ]
-    );
-    expect(
-      eosioToken.getTableRowsScoped(`accounts`)[attacker.accountName]
-    ).toEqual([
-      {
-        balance: `100.0000 EOS`,
-      },
-    ]);
+    await expect(
+      attacker.contract.attack({}, [
+        { actor: attacker.accountName, permission: `active` },
+      ])
+    ).rejects.toMatchObject({
+      message: expect.stringMatching(/would have lost/gi),
+    });
   });
 });

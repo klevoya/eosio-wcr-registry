@@ -1,0 +1,53 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "resolvebet",
+            "base": "",
+            "fields": [
+                {
+                    "name": "random",
+                    "type": "uint64"
+                },
+                {
+                    "name": "roller",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "rolls",
+            "base": "",
+            "fields": [
+                {
+                    "name": "from",
+                    "type": "name"
+                },
+                {
+                    "name": "quantity",
+                    "type": "asset"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "resolvebet",
+            "type": "resolvebet",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "rolls",
+            "type": "rolls",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": []
+}

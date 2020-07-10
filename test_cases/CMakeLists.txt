@@ -60,3 +60,16 @@ ExternalProject_Add(
    INSTALL_COMMAND ""
    BUILD_ALWAYS 1
 )
+
+ExternalProject_Add(
+   wcr-108
+   PREFIX wcr-108/build
+   SOURCE_DIR wcr-108
+   BINARY_DIR wcr-108/build
+   CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${EOSIO_CDT_ROOT}/lib/cmake/eosio.cdt/EosioWasmToolchain.cmake
+   UPDATE_COMMAND ""
+   PATCH_COMMAND ""
+   TEST_COMMAND ""
+   INSTALL_COMMAND ""
+   BUILD_ALWAYS 1
+)

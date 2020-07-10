@@ -15,4 +15,12 @@ contracts:
     abi: wcr-107/build/attacker.abi
     name: wcr-107-attacker
     wasm: wcr-107/build/attacker.wasm
+  wcr-108:
+    abi: wcr-108/build/vulnerable.abi
+    name: wcr-108
+    wasm: wcr-108/build/vulnerable.wasm
+  wcr-108-attacker:
+    abi: wcr-108/build/attacker.abi
+    name: wcr-108-attacker
+    wasm: wcr-108/build/attacker.wasm
 options: null
