@@ -37,6 +37,9 @@ A malicious contract sends real tokens (tokens from the actual desired token con
 }
 ```
 
+### Test Case
+> [Test for Fake Notification Receipt by Klevoya™](../test_cases/wcr-107/)
+
 ## Remediation
 
 Check the `from` and `to` parameters of the transfer notification to see if the contract is receiving or sending tokens.
@@ -56,9 +59,6 @@ Check the `from` and `to` parameters of the transfer notification to see if the 
     check(quantity.symbol == EOS_SYMBOL.get_symbol(), "EOS only!");
     // ...
 ```
-
-### Test Case
-> [Test for Fake Notification Receipt by Klevoya™](../test_cases/wcr-107/)
 
 <br/>
 

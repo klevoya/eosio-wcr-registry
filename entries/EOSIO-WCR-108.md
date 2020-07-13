@@ -1,22 +1,29 @@
 <br/>
 
-## Name: Unfair Rollback
+## Name: Transaction Rollback
 
 ### Unique Identifier: EOSIO-WCR-108
 
 ### Vulnerability Rating: Medium
 
-### Relationship: [CWE-1021: Improper Restriction of Rendered UI Layers or Frames (Clickjacking)](https://cwe.mitre.org/data/definitions/1021.html)
+### Relationship:
 
 <br/>
 
 ## Background
-A vulnerable smart contract that relies on users to transfer EOS before a pseudo-random outcome is revealed based on an on-chain state value like the _tapos_block_prefix_. These smart contracts contain a reveal function that is reachable from the _apply_ function (entry point) and are often used as lottery DApps where the winner is a player whose pick matches the generated pseudorandom value.
 
-<br/>
+An EOSIO transaction can consist of several actions and is an atomic operation. When any of these actions fails the whole transaction is reverted and none of the actions is applied to the chain state.
 
 ### Summary
-An implementation of the _reveal_ function in a vulnerable DApp, where all _actions_ are *merged* into a *single transaction* when revealing the winner of the lottery. This merged reveal, allows the attacker to utilise a evil intermediate contract between the vulnerable DApp and the official _eosio.token_ contract and abuse the _revert_ operation to repeatedly revert all losing guesses, until a winning is made.
+
+A vulnerable smart contract makes an important decision that allows an attacker to check for the outcome and revert the whole transaction if the outcome is undesired.
+
+Common examples are gambling contracts that resolve the bet in the same transaction as they receive it, or auction smart contracts notifying the previous bidder in the same transaction when receiving the higher bid.
+
+
+For example, consider a vulnerable gambling smart contract that relies on users to transfer EOS before a pseudo-random outcome is revealed based on an on-chain state value like the _tapos_block_prefix_. These smart contracts contain a reveal function that is reachable from the _apply_ function (entry point) and is often used by lottery DApps where the winner is a player whose pick matches the generated pseudorandom value.
+
+An implementation of the _reveal_ function, where all _actions_ are *merged* into a *single transaction* when revealing the winner of the lottery, is vulnerable. This merged reveal, allows the attacker to utilise an evil intermediate contract between the vulnerable DApp and the official _eosio.token_ contract and abuse the _check(false)_ operation to repeatedly revert all losing guesses until a winning guess is made.
 
 ### Diagram
 ![token transfer](images/rollback.png)
@@ -26,6 +33,7 @@ An implementation of the _reveal_ function in a vulnerable DApp, where all _acti
 <br/>
 
 ## Detailed Description
+
 The attacker invokes the _transfer_ function of their evil **intermediate** contract to **forward** a genuine EOS token transfer to the vulnerable DApp and make a successful **guess** for 1 round of the lottery.
 
 Once the tokens have successfully transferred to the victim DApp, the intermediate contract is **notified** of a token deduction by the _eosio.token_ contract within the very same transaction.
@@ -41,13 +49,38 @@ This _collision-like loop_ allows the attacker to _arbitrage_ the entire prize m
  <br/>
 
 ## Vulnerability
-The **reveal** function in lottery DApps
-is often used to generate a random number to determine the winner of each round. Unfortunately, many DApps implement the _reveal_ function in a way that can be exploited by the attackers. 
+
+The bet is resolved in the same transaction as it is received and the outcome can, therefore, be checked by an attacker in the same transaction, reverting on losses.
+
+```cpp
+[[eosio::on_notify("eosio.token::transfer")]] void on_transfer(
+    name from, name to, eosio::asset quantity, std::string memo) {
+  if (to != get_self())
+    return;
+
+  check(quantity.symbol == EOS_SYMBOL.get_symbol(), "wrong symbol");
+  check(quantity.amount > 1'0000, "must be more than 1 EOS");
+
+  // pay out jackpot on rare event
+  if (get_secure_random_roll() == 0) {
+    token::transfer_action transfer_act(
+        EOS_SYMBOL.get_contract(),
+        permission_level{get_self(), name("active")});
+    transfer_act.send(get_self(), from, quantity * 10,
+                      "You won the jackpot!");
+  }
+}
+```
 
 ### Test Case
 > [Test for Unfair Rollback by Klevoya™](../test_cases/wcr-108/)
 
 <br/>
+
+
+## Remediation
+
+Resolving the bet must happen in a different transaction than receiving the bet.
 
 ## Attack 
 
@@ -110,7 +143,6 @@ minute limit during symbolic execution. Manual location of the vulnerable **func
 
 <br/>
 
-## Remediation
 
 ### Patching Statistics
 | Patch % | Patch Time
