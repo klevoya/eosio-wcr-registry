@@ -9,9 +9,9 @@
 ### Relationship: [CWE-285: Missing Authorization](https://cwe.mitre.org/data/definitions/862.html)
 
 ## Background
-In EOSIO, a developer can use 3 functions to control authorization of smart contract actions by checking whether the caller of the action _equals_ the account that has the proper privileges.
-	* require_auth(account)
-	* require_auth2(account permission)
+
+In EOSIO, a developer can use two functions to control authorization of smart contract actions by checking whether the declared authorization of the action _equals_ the account that should be able to run the action.
+	* require_auth(account [permission])
 	* has_auth(account) 
 
 ### Summary
@@ -36,7 +36,7 @@ void token::transfer( account_name from, account_name to, asset quantity)
    add_balance( to, quantity, payer );
 }
 ```
-In order to resolve it, the **require_auth(from);** statement is needed to authorize the payer to call the action
+In order to resolve it, the **`require_auth(from);`** statement is needed to authorize the payer to call the action
 
 ### Test Case
 > [Test for Missing Authorization Check by Klevoya™](../test_cases/wcr-105/)

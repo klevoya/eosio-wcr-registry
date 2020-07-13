@@ -74,7 +74,7 @@ One more thing, make sure the credit the author and mention the source if you do
 
 Before you create a PR for the first time make sure you have read:
 
-- the sections [Create a new EOSIO WCR entry](#create-a-new-EOSIO WCR-entry) and [Create a new test case](#create-a-new-test-case).
+- the sections [Create a new EOSIO WCR entry](#create-a-new-eosio-wcr-entry) and [Create a new test case](#create-a-new-test-case).
 - read several existing EOSIO WCR definitions and their test cases. 
 
 ## Scope of Weaknesses 
