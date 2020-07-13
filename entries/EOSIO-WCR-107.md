@@ -15,6 +15,12 @@ A vulnerable smart contract does not check the **to** and **self** parameters of
 
 <br/>
 
+## Vulnerability
+### Test Case
+> [Test for Fake Notification Receipt by Klevoya™](../test_cases/wcr-107/)
+
+<br/>
+
 ## Attack 
 
 ### Top Known

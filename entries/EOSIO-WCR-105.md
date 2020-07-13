@@ -14,8 +14,6 @@ In EOSIO, a developer can use 3 functions to control authorization of smart cont
 	* require_auth2(account permission)
 	* has_auth(account) 
 
-
-
 ### Summary
 Due to missing authorization controls, a vulnerable smart contract **grants authorization** to **untrusted accounts** such as malicious parties, to access privileged contract resources e.g. **contract tables** or _perform_ mission-critical contract actions e.g. **token withdrawals**, where granting such **privilege is unsecure**
 
@@ -39,6 +37,9 @@ void token::transfer( account_name from, account_name to, asset quantity)
 }
 ```
 In order to resolve it, the **require_auth(from);** statement is needed to authorize the payer to call the action
+
+### Test Case
+> [Test for Missing Authorization Check by Klevoya™](../test_cases/wcr-105/)
 
 <br/>
 

@@ -40,9 +40,12 @@ This _collision-like loop_ allows the attacker to _arbitrage_ the entire prize m
  <br/>
  <br/>
 
- ## Vulnerability
+## Vulnerability
 The **reveal** function in lottery DApps
 is often used to generate a random number to determine the winner of each round. Unfortunately, many DApps implement the _reveal_ function in a way that can be exploited by the attackers. 
+
+### Test Case
+> [Test for Unfair Rollback by Klevoya™](../test_cases/wcr-108/)
 
 <br/>
 

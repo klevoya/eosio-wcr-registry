@@ -64,6 +64,9 @@ void on_transfer(name from, name to, asset quantity, string memo)
 } 
 ```
 
+### Test Case
+> [Test for Forged Token Transfer by Klevoya™](../test_cases/wcr-106/)
+
 <br/>
 
 ## Attack 
