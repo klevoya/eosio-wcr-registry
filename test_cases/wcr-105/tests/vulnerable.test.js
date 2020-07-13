@@ -23,7 +23,7 @@ describe("wcr-105", () => {
     });
   });
 
-  it("can insert the value", async () => {
+  it("can update the user without the user's auth", async () => {
     expect.assertions(1);
 
     await vuln.contract.insert({

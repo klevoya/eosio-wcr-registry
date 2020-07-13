@@ -9,10 +9,13 @@
 ### Relationship: [CWE-352: Cross-Site Request Forgery (CSRF)](https://cwe.mitre.org/data/definitions/352.html)
 
 ## Background
-The ABI dispatcher/forwarder is the entry point which allows EOS smart contracts to listen to incoming token transfer events, like EOS tokens from the _eosio.token_ contract account, as well as normal interactions with the smart contract. A vulnerable smart contract that does not bind _action_ and _code_ to meet security requirements, fails to avoid abnormal and illegal calls.
+The ABI dispatcher/forwarder is the entry point which allows EOSIO smart contracts to listen to incoming token transfer events, like EOS tokens from the _eosio.token_ contract account, as well as normal interactions with the smart contract. A vulnerable smart contract that does not bind _action_ and _code_ to meet security requirements, fails to avoid abnormal and illegal calls.
+
+Token symbols are not globally unique, each smart contract account can create their own token with the same symbol as other token contracts.
+A token symbol (consisting of a symbol code and precision) combined with the contract account (commonly referred to as an extended symbol) is unique and both parts must be checked.
 
 ### Summary
-An implementation of the _(apply)_ function in a **victim** smart contract that does not verify the code parameter properly, and is **deceived** into **executing** smart-contract logic of **monetary value** on receipt of fake _EOS_ tokens, where the _transfer_ action roots from a token issued by an entity **other than** _eosio.token_. There are many similar tokens on both the EOS mainnet and other EOSIO side chains like WAX/TELOS, that are susceptible to the same attack.
+An implementation of the _(apply)_ function in a **victim** smart contract that does not verify the `code` parameter properly (indicating the token contract account) upon receiving tokens, is **deceived** into **executing** smart-contract logic of **monetary value** on receipt of fake tokens.
 
 ### Diagram
 ![token transfer](images/token_transfer.png)
@@ -53,8 +56,9 @@ EOS Smart contracts that use generic notification handlers (using the * wildcard
 ### Sample Code 
 
 ```c++
- // wildcard * used in on_notify, allows the 'transfer' action from any contract!
+static constexpr symbol EOS_SYMBOL = symbol("EOS", 4);
 
+// wildcard * used in on_notify, allows the 'transfer' action from any contract!
 [[eosio::on_notify("*::transfer")]] 
 
 void on_transfer(name from, name to, asset quantity, string memo) 
@@ -68,6 +72,40 @@ void on_transfer(name from, name to, asset quantity, string memo)
 > [Test for Forged Token Transfer by Klevoya™](../test_cases/wcr-106/)
 
 <br/>
+
+
+## Remediation
+
+### Risk Mitigation
+The token contract of the received token needs to be checked with the `code` parameter inside the `apply` code entry point, or compared to the **get_first_receiver** (same as the `code` parameter) function call when using a notification handler macro.
+
+
+```c++
+extern "C" {
+   void apply( uint64_t receiver, uint64_t code, uint64_t action ) {
+     if(code == name("eosio.token") && action == name("transfer")) {
+       // handle transfer
+     }
+   }
+}
+
+// when using a wildcard notification handler
+[[eosio::on_notify("*::transfer")]] void on_transfer(
+      name from, name to, eosio::asset quantity, std::string memo) {
+		// check code paramter (get_first_receiver) for correct token contract
+    check(get_first_receiver() == name("eosio.token"), "fake EOS not accepted");
+    check(quantity.symbol == EOS_SYMBOL, "EOS only!");
+		// ...
+}
+
+// when using a contract specific notification handler, this check is implicitly done in the apply function
+[[eosio::on_notify("eosio.token::transfer")]] void on_transfer(
+      name from, name to, eosio::asset quantity, std::string memo) {
+		// code parameter already checked
+    check(quantity.symbol == EOS_SYMBOL, "EOS only!");
+		// ...
+}
+```
 
 ## Attack 
 
@@ -180,46 +218,6 @@ Description: It implements the interface ExecDetector
 
 <br/>
 
-## Remediation
-### Risk Reduction
-To reduce the risk of this particular issue, DApps can narrow down the actions of accepted code as shown on _line 9_ below where the _transfer_ action is **not allowed**.
-
-```c++
-void apply(uint64_t receiver, uint64_t code, uint64_t action) 
-{
-	if(action == "onerror"_n.value)
-	{
-		// onerror is only valid if it is for 
-		// the eosio code account and authorized
-		// by eosio's active permission
-		check(code == "eosio"_n.value, "onerror actions 
-			are only valid from `eosio` system account");		
-	}
-	auto self = receiver;
-	if(code == self && action != "transfer"_n.value)
-	{
-		switch(action)
-		{
-			EOSIO_DISPATCH_HELPER(TYPE, MEMBERS)
-		}
-		// does not allow destructor of this contract to
-		// run eosio_exit(0);
-	}
-}
-```
-
-### Risk Mitigation
-The token contract of the received token needs to be checked with the **get_first_receiver** function call inside the _apply_ code entry point
-
-
-```c++
-void apply(uint64_t receiver, uint64_t code, uint64_t action)
-{
-	// main code removed for brevity...
-
-	check(get_first_receiver() == name("eosio.token"), "forged token");
-}
-```
 
 #### Patching Statistics
 | Patch % | Patch Time
