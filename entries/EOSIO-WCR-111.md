@@ -125,12 +125,6 @@ In July 2018, EOSFomo was attacked through an overflow vulnerability.
 
 ![eos fomo overflow](images/eosfomo.png)
 
-[a relative link](../eosio-swc-registry/test_cases/wcr-105/)
-
-[a relative link 2](../test_cases/wcr-105/)
-
-[a link](https://github.com/klevoya/eosio-swc-registry/tree/master/test_cases/wcr-105)
-
 > **Figure 2.** As shown in the image below, the bonus displayed on the website became negative after the attack
 
 <br/>
