@@ -84,7 +84,6 @@ The result is that the attacker’s forged EOS tokens are deemed sufficient, to 
 | ha***a2 | eosbaccasino | 1,613.40 EOS | $ 4,388.45
 | wa***er | eosbaccasino | 1,613.40 EOS | $ 4,388.45
 
-
 ### Severity & Financial Impact
 | Number of Verified Attacks | Attacker / Victim Ratio | Total Financial Loss
 | ------ | ------ | ------

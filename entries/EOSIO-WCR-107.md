@@ -15,6 +15,24 @@ A vulnerable smart contract does not check the **to** and **self** parameters of
 
 <br/>
 
+## Attack 
+
+### Top Known
+| Attacker Account | Victim Account | Tokens Stolen | Dollars Lost  
+| ------ | ------ | ------ | ------
+| il***23, wh***r1 | eosbetdice11 | 138,319.80  EOS | $ 756,609.30
+| re***om, re***et | nkpaymentcap | 53,641.71 EOS | $ 200,619.98 
+| be***s1, be***s2 | epsdcclassic | 17,388.73 EOS | $ 41,559.07
+| po***ok, bi***os, he***bc | gambaccarats | 2,479.23 EOS | $ 9,346.70
+
+### Severity & Financial Impact
+| Number of Verified Attacks | Attacker / Victim Ratio | Total Financial Loss
+| ------ | ------ | ------
+| **5** / 27 (18.52%) | 28 : 17 | $ 1,020,831.94
+
+<br/>
+
+## Detection
 ### Methodology
 #### EOSSAFE Evaluation Benchmark
 

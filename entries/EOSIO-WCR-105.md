@@ -40,6 +40,18 @@ void token::transfer( account_name from, account_name to, asset quantity)
 ```
 In order to resolve it, the **require_auth(from);** statement is needed to authorize the payer to call the action
 
+<br/>
+
+## Attack 
+
+### Severity & Financial Impact
+| Number of Verified Attacks | Attacker / Victim Ratio | Total Financial Loss
+| ------ | ------ | ------
+| Unknown / 183 (N/A) | N/A : 144 | Unknown
+
+<br/>
+
+## Detection
 ### Methodology
 #### EOSSAFE Evaluation Benchmark
 
@@ -68,7 +80,6 @@ In order to resolve it, the **require_auth(from);** statement is needed to autho
 Implement controls so **token withdrawals** can **only** be triggered by **authorized** parties or according to the specifications of the smart contract system
 
 ## References
-- [EOS Smart Contract Development Security Best Practices - Authorization Check
-](https://github.com/slowmist/eos-smart-contract-security-best-practices/blob/master/README_EN.md#authorization-check)
+- [EOS Smart Contract Development Security Best Practices - Authorization Check](https://github.com/slowmist/eos-smart-contract-security-best-practices/blob/master/README_EN.md#authorization-check)
 
 - [Security Analysis of EOSIO Smart Contracts by EOSAFE](https://arxiv.org/abs/2003.06568)

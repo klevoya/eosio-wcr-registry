@@ -46,6 +46,21 @@ is often used to generate a random number to determine the winner of each round.
 
 <br/>
 
+## Attack 
+
+### Top Known
+| Attacker Account | Victim Account | Tokens Stolen | Dollars Lost  
+| ------ | ------ | ------ | ------
+| ey***nc | eosbiggame44 |  14,903.19 EOS | $  37,257.97
+| yb***xn | nutsgambling | 1,141.71 EOS | $ 3,459.38
+
+### Severity & Financial Impact
+| Number of Verified Attacks | Attacker / Victim Ratio | Total Financial Loss
+| ------ | ------ | ------
+| **12** / 12 (100.00%) | 12 : 9 | $ 52,984.00
+
+<br/>
+
 ## Detection
 
 ### Steps
