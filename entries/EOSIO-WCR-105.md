@@ -6,7 +6,7 @@
 
 ### Vulnerability Rating: Low
 
-### Relationship: [CWE-285: Missing Authorization)](https://cwe.mitre.org/data/definitions/862.html)
+### Relationship: [CWE-285: Missing Authorization](https://cwe.mitre.org/data/definitions/862.html)
 
 ## Background
 In EOSIO, a developer can use 3 functions to control authorization of smart contract actions by checking whether the caller of the action _equals_ the account that has the proper privileges.
