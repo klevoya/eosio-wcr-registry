@@ -1,6 +1,6 @@
 <br/>
 
-## Name: Haphazard Multi-index Migration
+## Name: Haphazard Multi-Index Migration
 
 ### Unique Identifier: EOSIO-WCR-110
 

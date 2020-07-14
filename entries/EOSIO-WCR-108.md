@@ -4,9 +4,9 @@
 
 ### Unique Identifier: EOSIO-WCR-108
 
-### Vulnerability Rating: Medium
+### Vulnerability Rating: High
 
-### Relationship:
+### Relationship: [CWE-471: Modification of Assumed-Immutable Data (MAID)](https://cwe.mitre.org/data/definitions/471.html)
 
 <br/>
 
