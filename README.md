@@ -8,6 +8,13 @@ The EOSIO Smart Contract Weakness Classification registry is a classification sy
 
 It is loosely aligned to the terminologies and structure used in the Common Weakness Classification ([CWE](https://cwe.mitre.org/)) and the Ethereum Smart Contract Weakness Classification ([SWC](https://github.com/SmartContractSecurity/SWC-registry)) Registry whilst paying attention to weakness variants that are specific to EOSIO smart contracts.
 
+## EOS Publicly Known Vulnerabilites
+
+| ID | Name | Rating | CWE Equivalent
+| ------ | ------ | ------ | ------
+| EOSIO-WCR-104 | [Missing Assertion Check](/entries/EOSIO-WCR-104.md) | Medium | [Improper Check for Exceptional Conditions](https://cwe.mitre.org/data/definitions/754.html)
+| EOSIO-WCR-104 | [Missing Assertion Check](entries/EOSIO-WCR-104.md) | Medium | [Improper Check for Exceptional Conditions](https://cwe.mitre.org/data/definitions/754.html)
+
 ## Create a new EOSIO WCR entry
 
 Make sure that there is no matching weakness in the registry. Ideally, also coordinate with the community in [EOSIO WCR-registry Telegram channel](https://t.me/klevoya) to prevent conflicting entries. Create a file with a new EOSIO WCR ID in the [entries](./entries) directory. Use the [template](./entries/EOSIO-WCR-TEMPLATE.md) and describe all weakness attributes. 

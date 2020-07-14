@@ -4,7 +4,7 @@
 
 ### Unique Identifier: EOSIO-WCR-109
 
-### Vulnerability Rating: Low
+### Vulnerability Rating: Medium
 
 ### Relationship: [CWE-285: Missing Authorization](https://cwe.mitre.org/data/definitions/862.html)
 
