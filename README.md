@@ -14,15 +14,15 @@ It is loosely aligned to the terminologies and structure used in the Common Weak
 
 | ID | Name | Rating | CWE Equivalent
 | ------ | ------ | ------ | ------
-| EOSIO-WCR-104 | [Missing Assertion Check](entries/EOSIO-WCR-104.md) | _High_ 7.5 | [CWE-754: Improper Check for Exceptional Condition](https://cwe.mitre.org/data/definitions/754.html)
-| EOSIO-WCR-105 | [Missing Authorisation Check](entries/EOSIO-WCR-105.md) | _High_ 8.0 | [CWE-862: Missing Authorization](https://cwe.mitre.org/data/definitions/862.html)
+| EOSIO-WCR-104 | [Missing Assertion Check](entries/EOSIO-WCR-104.md) | _High_ 7.0 | [CWE-754: Improper Check for Exceptional Condition](https://cwe.mitre.org/data/definitions/754.html)
+| EOSIO-WCR-105 | [Missing Authorisation Check](entries/EOSIO-WCR-105.md) | _High_ 7.5 | [CWE-862: Missing Authorization](https://cwe.mitre.org/data/definitions/862.html)
 | EOSIO-WCR-106 | [Forged Token Transfer](entries/EOSIO-WCR-106.md) | **Critical** 9.0  | [CWE-352: Cross-Site Request Forgery](https://cwe.mitre.org/data/definitions/352.html)
 | EOSIO-WCR-107 | [Fake Notification Receipt](entries/EOSIO-WCR-107.md) | **Critical** 9.5 | [CWE-1021: Improper Restriction of Rendered Frames](https://cwe.mitre.org/data/definitions/1021.html)
 | EOSIO-WCR-108 | [Transaction Rollback](entries/EOSIO-WCR-108.md) | **Critical** 8.5  | [CWE-471: Modification of Assumed-Immutable Data](https://cwe.mitre.org/data/definitions/471.html)
-| EOSIO-WCR-109 | [Untested Token Method](entries/EOSIO-WCR-109.md) | Medium 7.0 | [CWE-749: Exposed Dangerous Method](https://cwe.mitre.org/data/definitions/749.html)
-| EOSIO-WCR-110 | [Haphazard Multi-Index Migration](entries/EOSIO-WCR-110.md) | Low 6.5 | [CWE-669: Incorrect Resource Transfer Between Spheres](https://cwe.mitre.org/data/definitions/669.html)
+| EOSIO-WCR-109 | [Untested Token Method](entries/EOSIO-WCR-109.md) | Low 6.0 | [CWE-749: Exposed Dangerous Method](https://cwe.mitre.org/data/definitions/749.html)
+| EOSIO-WCR-110 | [Haphazard Multi-Index Migration](entries/EOSIO-WCR-110.md) | Medium 6.5 | [CWE-669: Incorrect Resource Transfer Between Spheres](https://cwe.mitre.org/data/definitions/669.html)
 | EOSIO-WCR-111 | [Integer Overflow](entries/EOSIO-WCR-111.md) | **Critical** 10.0 | [CWE-190: Integer Overflow](https://cwe.mitre.org/data/definitions/190.html)
-
+| EOSIO-WCR-112 | [Bad Randomness](entries/EOSIO-WCR-112.md) | **Critical** 8.0 | [CWE-338: Use of Cryptographically Weak Pseudorandom Number Generator](https://cwe.mitre.org/data/definitions/338.html)
 
 
 <br/>

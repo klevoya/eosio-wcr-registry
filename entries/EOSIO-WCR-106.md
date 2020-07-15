@@ -17,7 +17,7 @@ A token symbol (consisting of a symbol code and precision) combined with the con
 ### Summary
 An implementation of the _(apply)_ function in a **victim** smart contract that does not verify the `code` parameter properly (indicating the token contract account) upon receiving tokens, is **deceived** into **executing** smart-contract logic of **monetary value** on receipt of fake tokens.
 
-### Diagram
+#### Diagram
 ![token transfer](images/token_transfer.png)
 
 > **Figure 1.** Lifecycle of a token transfer
