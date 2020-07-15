@@ -74,17 +74,7 @@ uint32_t amount = 2147483647;
 amount++;
 ```
 
-The resultant value of **amount** would then be **-2147483648** as follows:
-```c++
-#include <iostream>
-using namespace std;
-
-int main() {
-  cout << amount;
-  return 0;
-}
-// prints uint32_t amount =  -2147483648
-```
+The resultant value of **amount** would then be **-2147483648**.
 
 This creates a huge vulnerability in the smart contract logic, as any consequent logic checks to allow conditional monetary based actions such as the following eosio assertion:
 
@@ -103,6 +93,7 @@ would pass, even if a user does not have sufficient balance. Usually the above c
  ### Risk Mitigation
 
  Use the **asset structure** defined in the eosiolib for operations rather than the exact balance which takes care of the overflow conditions.
+ Check for overflows whenever doing a risky computation that involves attacker-controlled data.
 
 <br/>
 
