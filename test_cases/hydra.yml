@@ -27,4 +27,12 @@ contracts:
     abi: wcr-111/build/vulnerable.abi
     name: wcr-111
     wasm: wcr-111/build/vulnerable.wasm
+  wcr-113:
+    abi: wcr-113/build/vulnerable.abi
+    name: wcr-113
+    wasm: wcr-113/build/vulnerable.wasm
+  wcr-113-attacker:
+    abi: wcr-113/build/attacker.abi
+    name: wcr-113-attacker
+    wasm: wcr-113/build/attacker.wasm
 options: null

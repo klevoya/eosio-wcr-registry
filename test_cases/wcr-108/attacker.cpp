@@ -1,4 +1,4 @@
-#include "eosio.token.hpp"
+#include "../eosio.token.hpp"
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 #include <eosio/system.hpp>
