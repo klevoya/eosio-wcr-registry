@@ -51,21 +51,26 @@ to a token airdrop.
 
 3. The DoS token drop contract also **airdrops** a certain amount of a complimentary custom token as an incentive for the transaction to the original sender’s address
 
-<br/>
 
 ![sample airdrop](images/sample_dos_txn.png)
 
-<br/>
+> **Figure 6:** Sample Airdrop Interaction Pattern
+
+
 
 4. Since altcoin exchanges list the custom airdrop token with a direct fiat-based stablecoin pair i.e. USDT or USDC, rational actors with at least 0.0001 EOS, are incentivized to collect and attempt to sell the airdropped tokens for a non-zero amount of USDT / USDC
 
-<br/>
+
 
 ![cleared txns](images/cleared_exchange_txns.png)
 
-> **Figure 6:** Cleared EOS/USDT Trades (Source: MXC Exchange)
+> **Figure 7:** Cleared EOS/USDT Trades (Source: MXC Exchange)
 
-5. To take advantage of this **arbitrage**, users direct leased CPU towards the _airdrop contract_ and dramatically increase the number of transfers processed by the EOS network
+5. To take advantage of this **arbitrage**, rational parties direct leased CPU towards the _airdrop contract_ as there is no penalty for repeated invocation of the airdrop claim, causing an EOS network flood
+
+![airdrop claim](images/airdrop_claims.png)
+
+> **Figure 8:** Number of airdrop _claim_ actions per hour skyrocket on EOS
 
 6. The increased network activity causes the EOS network to enter **congestion mode**, which limits the number of transactions (TXNs) that users can broadcast to their **pro-rata share of total staked CPU**
 
