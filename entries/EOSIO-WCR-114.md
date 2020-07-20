@@ -10,33 +10,34 @@
 
 ## Background
 
-In order to do anything on EOS a user needs to stake a proportional amount of EOS tokens, either to make computations (CPU), move data (NET) or store information (RAM)
+In order to do anything on an EOSIO chain, a user needs to stake a proportional amount of system tokens, either to make computations (CPU), move data (NET) or sell them to store information (RAM).
 
-Within EOS, blocks are created 500 milliseconds apart. To help ensure that Block Producers have enough time to propagate blocks around the world, there is a per-block processing time limit of 200 milliseconds within which a Producer has to validate the block before broadcasting it to the network. This leaves 300 milliseconds for propagation across the network.
+Within EOSIO, blocks are created 500 milliseconds apart. To help ensure that Block Producers have enough time to propagate blocks around the world, there is a per-block processing time limit of 200 milliseconds (default settings) within which a Producer has to validate the block before broadcasting it to the network. This leaves 300 milliseconds for propagation across the network.
 
-Within the cap of 200 milliseconds, there is also a **percentage threshold** at which **rate limiting begins**. Before this limit is reached, all users can freely transact on the network as it is not in **“congestion mode.”** Once this limit is passed, users are **throttled** back to their **pro-rata share** of the **total CPU-per-staked-EOS allotment**
+
+Some EOSIO chains come with a _free CPU leeway_ feature that allows accounts to consume more than their allotted resources if the overall network usage is low. Before this limit is reached, all users can freely transact on the network as it is not in **“congestion mode.”** Once this limit is passed, users are **throttled** back to their **pro-rata share** of the **total CPU-per-staked-EOS allotment**
 
 <br/>
 
 Example
-> If there are **10,000 EOS tokens** being staked for **CPU** on **EOSIO** at a given moment, and Alice's account (an EOS whale) has **930 EOS tokens staked**, then Alice is guaranteed **9.3%** of the **total CPU capacity of the network**. If the network is being heavily used or suffering from a DoS attack, surpassing the **threshold** at which **rate limiting is activated**, Alice would not be able to exceed the guaranteed transaction rate alloted to her by her stake
+> If there are **10,000 EOS tokens** being staked for **CPU** on **EOS** at a given moment, and Alice's account (an EOS whale) has **930 EOS tokens staked**, then Alice is guaranteed **9.3%** of the **total CPU capacity of the network**. If the network is being heavily used or suffering from a DoS attack, surpassing the **threshold** at which **rate limiting is activated**, Alice would not be able to exceed the guaranteed transaction rate allotted to her by her stake.
 
 <br/>
 
-Every EOS account has 2 separate values: **used CPU** and **total allowed CPU**. During a period when EOS is in **congestion mode**, the **total allowed CPU** can fluctuate wildly. The image below demonstates this fluctuation when the chain allows **20.6 ms.** of available compute _(left)_ one moment, to **11.8 ms.** of available compute _(right)_, the very next. 
+Every EOS account has 2 separate values: **used CPU** and **total allowed CPU**. During a period when EOS is not in **congestion mode**, the **total allowed CPU** can fluctuate wildly. The actual CPU leeway multiplier is a chain parameter and it can happen that users are allowed to use 1000 times more CPU than in congestion mode. The image below demonstrates this fluctuation when the chain allows **20.6 ms.** of available compute _(left)_ one moment, to **11.8 ms.** of available compute _(right)_, the very next. 
 
 <br/>
 
 ![rate limiting](images/rate_limiting.png)
 
-> **Figure 5:** The CPU Variance means that an EOS accout may show to have used more than 100% of its allotment during times of congestion
+> **Figure 5:** The CPU Variance means that an EOSIO account may show to have used more than 100% of its allotment
 
 ### Summary
 
-Carefully crafted token contracts such as _EIDOS - Everyone is Denied of Service_ with airdrop patterns that entice rational actors on the EOS blockchain to generate nonutilitarian network traffic that causes performance degradation for all other users 
+Carefully crafted token contracts such as _EIDOS - Everyone is Denied of Service_ with airdrop patterns that entice rational actors on the EOS blockchain to generate nonutilitarian network traffic that causes performance degradation for all other users.
 
-Degraded performance of EOS transactions due to an inadequare share of CPU staking in the face of a massive increase in network activity related 
-to a token airdrop
+Degraded performance of EOS transactions due to an inadequate share of CPU staking in the face of a massive increase in network activity related 
+to a token airdrop.
 
 ## Detailed Description
 
@@ -48,7 +49,7 @@ to a token airdrop
 
 2. The Denial of Service (DoS) token drop contract will then send a transaction returning the same amount of EOS back to the original sender 
 
-3. The DoS token drop contract also **airdrops** a certain amount of a complimentary custom token as incentive for the transaction to the original sender’s address
+3. The DoS token drop contract also **airdrops** a certain amount of a complimentary custom token as an incentive for the transaction to the original sender’s address
 
 <br/>
 
@@ -66,20 +67,20 @@ to a token airdrop
 
 5. To take advantage of this **arbitrage**, users direct leased CPU towards the _airdrop contract_ and dramatically increase the number of transfers processed by the EOS network
 
-6. The increased network activity causes the EOS network to enter **congestion mode**, which limits the amount of transactins (TXNs) that users can broadcast to their **pro-rata share of total staked CPU**
+6. The increased network activity causes the EOS network to enter **congestion mode**, which limits the number of transactions (TXNs) that users can broadcast to their **pro-rata share of total staked CPU**
 
-7. Normal users that were previously able to process their transactions with their _staked CPU_ status quo, are now unable to have their transactions processed, due to the same CPU stake now being considered too low an amount by the EOS protocol
+7. Normal users that were previously able to process their transactions with their _staked CPU_ status quo are now unable to have their transactions processed, due to the same CPU stake now being considered too low an amount by the EOS protocol
 
-| Note! :gear: _EOS protocol is behaving as expected, but congestion mode prevents users from having transactions processed that exceed their CPU stake_ |
+| Note: _EOSIO protocol is behaving as expected, but congestion mode prevents users from having transactions processed that exceed their CPU stake_ |
 | --- |
 
-8. Such DoS network attacks can be expected to remain in state as per game theory, until:
+1. Such DoS network attacks can be expected to remain in state as per game theory, until:
     * It is no longer profitable to collect the airdrops 
     * The sizeable _leases_ taken out of the **REX contract** expire (30 days) && the leasers **don’t renew** their _lease_
 
 ## Vulnerability
 
-An attacker exploits the native EOSIO design choices by designing an airdrop contract that doesn’t take into account a minimum EOS threshold to be sent. Instead, the airdrop contract is _a spam-generating machine_ as it is designed to generate maximum transactions that costs users time but not money. 
+An attacker exploits the native EOSIO design choices by designing an airdrop contract that doesn’t take into account a minimum EOS threshold to be sent. Instead, the airdrop contract is _a spam-generating machine_ as it is designed to generate maximum transactions that cost users time but not money. 
 
 Once users are refunded the EOS sent to the airdrop token contract, they are incentivized to send the EOS immediately back to the token contract due to the _incremental arbritage_ motive to do more actions rather than spend more money. In essence, such a contract is designed to test the capacity of EOSIO itself.
 
@@ -87,7 +88,7 @@ Once users are refunded the EOS sent to the airdrop token contract, they are inc
 A sample **claim** action that encourages users to essentially spam the EOS network in return for a small monetary incentive
 
 ```c++
-void token::claim(name from, name to, eosio::asset quantity, std::string memo)
+[[eosio::on_notify("eosio.token::transfer")]] void token::claim(name from, name to, eosio::asset quantity, std::string memo)
 {
    if (to != get_self() || from == get_self()) 
          return;
@@ -158,13 +159,15 @@ void token::claim(name from, name to, eosio::asset quantity, std::string memo)
 ## Remediation
 ### Risk Reduction
 
-* Victims like large cryptocurrency exchanges, can respond to the network issue by increasing the amount of staked CPU in their wallets, to unblock customer transactions
+* Victims like large cryptocurrency exchanges can respond to the network issue by increasing the amount of staked CPU in their wallets, to unblock customer transactions
 
-* Users could could move EOS supply out of exchange accounts and onto the network
+* Users could stake enough resources for their purposes or lend resources from REX.
+
+* Dapps can pay for their users' resources making use of the [`ONLY_BILL_FIRST_AUTHORIZER`](https://github.com/EOSIO/eos/issues/6332) protocol feature.
 
 ### Risk Mitigation
 
-* Block Producers could **remove** the **80% cap** on **REX** rentals to allow the price to rent to rise high enough, so that more EOS users are incentivized to move their EOS stake to REX
+* Block Producers could **remove** the **80% cap** on **REX** rentals to allow the price to rent to rise high enough so that more EOS users are incentivized to move their EOS stake to REX
 
 ## References
 
