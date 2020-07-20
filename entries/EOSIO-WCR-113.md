@@ -1,6 +1,10 @@
-# Re-Entrancy Attack
+# Re-entrancy Attack
 
-## Relationships
+### Unique Identifier: EOSIO-WCR-113
+
+### Vulnerability Rating: Low
+
+### Relationship: [CWE-1265: Unintended Reentrant Invocation of Non-reentrant Code Via Nested Calls](https://cwe.mitre.org/data/definitions/1265.html)
 
 ## Background
 

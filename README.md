@@ -23,7 +23,8 @@ It is loosely aligned to the terminologies and structure used in the Common Weak
 | EOSIO-WCR-110 | [Haphazard Multi-Index Migration](entries/EOSIO-WCR-110.md) | Medium 6.5 | [CWE-669: Incorrect Resource Transfer Between Spheres](https://cwe.mitre.org/data/definitions/669.html)
 | EOSIO-WCR-111 | [Integer Overflow](entries/EOSIO-WCR-111.md) | **Critical** 10.0 | [CWE-190: Integer Overflow](https://cwe.mitre.org/data/definitions/190.html)
 | EOSIO-WCR-112 | [Bad Randomness](entries/EOSIO-WCR-112.md) | **Critical** 8.0 | [CWE-338: Use of Cryptographically Weak Pseudorandom Number Generator](https://cwe.mitre.org/data/definitions/338.html)
-
+| EOSIO-WCR-113 | [Re-entrancy Attack](entries/EOSIO-WCR-113.md) | **Low** 6.0 | [CWE-1265: Unintended Reentrant Invocation of Non-reentrant Code Via Nested Calls](https://cwe.mitre.org/data/definitions/1265.html)
+| EOSIO-WCR-114 | [Denial of Service](entries/EOSIO-WCR-114.md) | **Medium** 7.0 | [CWE-400: Uncontrolled Resource Consumption](https://cwe.mitre.org/data/definitions/400.html)
 
 <br/>
 
