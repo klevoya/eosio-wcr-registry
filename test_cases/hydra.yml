@@ -1,8 +1,12 @@
 contracts:
-  wcr-105:
+  wcr-105-1:
     abi: wcr-105/build/vulnerable.abi
-    name: wcr-105
+    name: wcr-105-1
     wasm: wcr-105/build/vulnerable.wasm
+  wcr-105-2:
+    abi: wcr-105/build/freezevuln.abi
+    name: wcr-105-2
+    wasm: wcr-105/build/freezevuln.wasm
   wcr-106:
     abi: wcr-106/build/vulnerable.abi
     name: wcr-106

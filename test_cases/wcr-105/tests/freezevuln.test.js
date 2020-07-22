@@ -2,14 +2,13 @@ const { loadConfig, Blockchain } = require("@klevoya/hydra");
 
 const config = loadConfig("hydra.yml");
 
-describe("wcr-105-1", () => {
+describe("wcr-105-2", () => {
   let blockchain = new Blockchain(config);
   let vuln = blockchain.createAccount(`vulnerable`);
-  let user = blockchain.createAccount(`user`);
   let attacker = blockchain.createAccount(`attacker`);
 
   beforeAll(async () => {
-    vuln.setContract(blockchain.contractTemplates[`wcr-105-1`]);
+    vuln.setContract(blockchain.contractTemplates[`wcr-105-2`]);
     vuln.updateAuth(`active`, `owner`, {
       accounts: [
         {
@@ -23,6 +22,31 @@ describe("wcr-105-1", () => {
     });
   });
 
+  it("can freeze the contract without the contract owner's auth", async () => {
+    expect.assertions(2);
+
+    // Owner can freeze the contract
+    await vuln.contract.freeze();
+
+    expect(vuln.getTableRowsScoped(`status`)[vuln.accountName]).toEqual([
+      {
+        frozen: '1'
+      },
+    ]);
+
+    // attacker can unfreeze the contract
+    await vuln.contract.unfreeze(
+      [{ actor: attacker.accountName, permission: `active` }]
+    );
+
+    expect(vuln.getTableRowsScoped(`status`)[vuln.accountName]).toEqual([
+      {
+        frozen: '0'
+      },
+    ]);
+  });
+
+  /*
   it("can update the user without the user's auth", async () => {
     expect.assertions(1);
 
@@ -46,5 +70,5 @@ describe("wcr-105-1", () => {
         display_name: `Evil 1`
       },
     ]);
-  });
+  }); */
 });
