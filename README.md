@@ -79,6 +79,8 @@ make
 
 ```bash
 cd test_cases
+# If this is the first time running Hydra in this directory then install dependencies
+npm i
 # run all
 npm test
 # run only wcr-105 tests
