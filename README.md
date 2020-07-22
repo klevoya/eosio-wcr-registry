@@ -62,7 +62,7 @@ Test cases should be as varied as possible and include both simple test cases an
 1. A directory named `WCR-<number>` that contains all files belonging to a single test case
 2. A vulnerable contract and a contract where the vulnerability has been fixed for each issue.
 3. Add your contracts for compilation to the [CMakeLists root file](./test_cases/CMakeLists.txt)
-4. Optional unit tests showing how to exploit the vulnerable contract. Add your contract to [hydra.yml](./test_cases/CMakeLists.txt)
+4. Optional unit tests showing how to exploit the vulnerable contract. Add your contract to [hydra.yml](./test_cases/hydra.yml)
 
 ### Compiling contracts
 
