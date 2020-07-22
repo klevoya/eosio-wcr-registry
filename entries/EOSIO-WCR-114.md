@@ -79,7 +79,7 @@ to a token airdrop.
 | Note: _EOSIO protocol is behaving as expected, but congestion mode prevents users from having transactions processed that exceed their CPU stake_ |
 | --- |
 
-1. Such DoS network attacks can be expected to remain in state as per game theory, until:
+1. Such DoS network attacks can be expected to remain in motion as per game theory, until:
     * It is no longer profitable to collect the airdrops 
     * The sizeable _leases_ taken out of the **REX contract** expire (30 days) && the leasers **don’t renew** their _lease_
 
@@ -160,6 +160,7 @@ A sample **claim** action that encourages users to essentially spam the EOS netw
    }  
 }  
 ```
+> **Figure 9:** The first "transfer"_n refunds EOS while the final  "transfer"_n airdrops EIDOS the sample token
 
 ## Remediation
 ### Risk Reduction
