@@ -22,7 +22,7 @@ describe("wcr-105-2", () => {
     });
   });
 
-  it("can freeze the contract without the contract owner's auth", async () => {
+  it("can unfreeze the contract without the contract owner's auth", async () => {
     expect.assertions(2);
 
     // Owner can freeze the contract
