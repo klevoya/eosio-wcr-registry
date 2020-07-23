@@ -46,30 +46,4 @@ describe("wcr-105-2", () => {
       },
     ]);
   });
-
-  /*
-  it("can update the user without the user's auth", async () => {
-    expect.assertions(1);
-
-    await vuln.contract.insert({
-      user: user.accountName,
-      display_name: `User 1`,
-    });
-
-    // attacker can change user1's name
-    await vuln.contract.update(
-      {
-        user: user.accountName,
-        display_name: `Evil 1`,
-      },
-      [{ actor: attacker.accountName, permission: `active` }]
-    );
-
-    expect(vuln.getTableRowsScoped(`user`)[vuln.accountName]).toEqual([
-      {
-        username: user.accountName,
-        display_name: `Evil 1`
-      },
-    ]);
-  }); */
 });
