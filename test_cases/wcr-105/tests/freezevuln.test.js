@@ -28,7 +28,7 @@ describe("wcr-105-2", () => {
     // Owner can freeze the contract
     await vuln.contract.freeze();
 
-    expect(vuln.getTableRowsScoped(`status`)[vuln.accountName]).toEqual([
+    expect(vuln.getTableRowsScoped(`freezestatus`)[vuln.accountName]).toEqual([
       {
         frozen: '1'
       },
@@ -36,10 +36,11 @@ describe("wcr-105-2", () => {
 
     // attacker can unfreeze the contract
     await vuln.contract.unfreeze(
+      {},
       [{ actor: attacker.accountName, permission: `active` }]
     );
 
-    expect(vuln.getTableRowsScoped(`status`)[vuln.accountName]).toEqual([
+    expect(vuln.getTableRowsScoped(`freezestatus`)[vuln.accountName]).toEqual([
       {
         frozen: '0'
       },

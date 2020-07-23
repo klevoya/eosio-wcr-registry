@@ -20,6 +20,8 @@ public:
     };
 
     typedef eosio::singleton<"freezestatus"_n, status> frozen_t;
+    // dummy for ABI generator
+    typedef eosio::multi_index<"freezestatus"_n, status> abi_frozen_t;
 
     uint64_t getFreezeFlag()
     {

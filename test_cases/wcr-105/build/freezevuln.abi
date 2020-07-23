@@ -1,0 +1,50 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "freeze",
+            "base": "",
+            "fields": []
+        },
+        {
+            "name": "status",
+            "base": "",
+            "fields": [
+                {
+                    "name": "frozen",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "unfreeze",
+            "base": "",
+            "fields": []
+        }
+    ],
+    "actions": [
+        {
+            "name": "freeze",
+            "type": "freeze",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "unfreeze",
+            "type": "unfreeze",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "freezestatus",
+            "type": "status",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": []
+}
