@@ -1,8 +1,4 @@
 # EOSIO Weakness Classification Registry
-[![CircleCI](https://circleci.com/gh/SmartContractSecurity/SWC-registry/tree/master.svg?style=svg)](https://circleci.com/gh/SmartContractSecurity/SWC-registry/tree/master)
-[![Pages](https://img.shields.io/badge/pages-online-blue.svg)](https://smartcontractsecurity.github.io/SWC-registry/)
-[![Discord](https://img.shields.io/discord/481002907366588416.svg)](https://discord.gg/qcNvR2r)
-
 
 The EOSIO Smart Contract Weakness Classification registry is a classification system for weaknesses and vulnerabilities in EOSIO smart contracts.
 
