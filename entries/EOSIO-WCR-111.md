@@ -116,7 +116,7 @@ In July 2018, EOSFomo was attacked through an overflow vulnerability.
 
 ![eos fomo overflow](images/eosfomo.png)
 
-> **Figure 2.** As shown in the image below, the bonus displayed on the website became negative after the attack
+> **Figure 1.** As shown in the image below, the bonus displayed on the website became negative after the attack
 
 <br/>
 

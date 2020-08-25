@@ -56,7 +56,7 @@ ACTION test()
 }
 ```
 
-> **Figure 10:** Deallocating a memory pointed by ptr causes the dangling pointer vulnerability
+> **Figure 1:** Deallocating a memory pointed by ptr causes the dangling pointer vulnerability
 
 ## Remediation
 
@@ -81,7 +81,7 @@ ACTION test()
 }
 ```
 
-> **Figure 11:** To patch the dangling pointer vulnerability we can simply use NULL
+> **Figure 2:** To patch the dangling pointer vulnerability we can simply use NULL
 
 | Note: _A null pointer stores a defined value, but one that is defined by the environment to **not** be a valid address for any member or object_ |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ |

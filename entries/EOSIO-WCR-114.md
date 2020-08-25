@@ -30,7 +30,7 @@ Every EOS account has 2 separate values: **used CPU** and **total allowed CPU**.
 
 ![rate limiting](images/rate_limiting.png)
 
-> **Figure 5:** The CPU Variance means that an EOSIO account may show to have used more than 100% of its allotment
+> **Figure 1:** The CPU Variance means that an EOSIO account may show to have used more than 100% of its allotment
 
 ### Summary
 
@@ -54,7 +54,7 @@ to a token airdrop.
 
 ![sample airdrop](images/sample_dos_txn.png)
 
-> **Figure 6:** Sample Airdrop Interaction Pattern
+> **Figure 2:** Sample Airdrop Interaction Pattern
 
 
 
@@ -64,13 +64,13 @@ to a token airdrop.
 
 ![cleared txns](images/cleared_exchange_txns.png)
 
-> **Figure 7:** Cleared EOS/USDT Trades (Source: MXC Exchange)
+> **Figure 3:** Cleared EOS/USDT Trades (Source: MXC Exchange)
 
 5. To take advantage of this **arbitrage**, rational parties direct leased CPU towards the _airdrop contract_ as there is no penalty for repeated invocation of the airdrop claim, causing an EOS network flood
 
 ![airdrop claim](images/airdrop_claims.png)
 
-> **Figure 8:** Number of airdrop _claim_ actions per hour skyrocket on EOS
+> **Figure 4:** Number of airdrop _claim_ actions per hour skyrocket on EOS
 
 6. The increased network activity causes the EOS network to enter **congestion mode**, which limits the number of transactions (TXNs) that users can broadcast to their **pro-rata share of total staked CPU**
 
@@ -160,7 +160,7 @@ A sample **claim** action that encourages users to essentially spam the EOS netw
    }  
 }  
 ```
-> **Figure 9:** The first "transfer"_n refunds EOS while the final  "transfer"_n airdrops EIDOS the sample token
+> **Figure 5:** The first "transfer"_n refunds EOS while the final  "transfer"_n airdrops EIDOS the sample token
 
 ## Remediation
 ### Risk Reduction
