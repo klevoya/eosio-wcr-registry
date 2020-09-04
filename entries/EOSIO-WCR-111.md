@@ -1,4 +1,4 @@
-<br/>
+
 
 ## Name: Integer Underflow / Overflow
 
@@ -95,7 +95,7 @@ would pass, even if a user does not have sufficient balance. Usually the above c
  Use the **asset structure** defined in the eosiolib for operations rather than the exact balance which takes care of the overflow conditions.
  Check for overflows whenever doing a risky computation that involves attacker-controlled data.
 
-<br/>
+
 
 ## Attack 
 
@@ -104,34 +104,9 @@ would pass, even if a user does not have sufficient balance. Usually the above c
 We can infer that the developers did not verify the results or use a secure library. The overflow is triggered by any attacker who targets the rights
 management system of the game, which has the aforementioned design flaws. The attacker can exploit overflows by repeatedly calling a public withdraw function in the EOSIO smart contract
 
-### Top Known
-
-EOSFomo 3D, a Fomo3D18-like game based on EOS
-platform required players to purchase keys on different teams, with the
-last one receiving rewards from the jackpot. 
-
-In July 2018, EOSFomo was attacked through an overflow vulnerability. 
-
-<br/>
-
-![eos fomo overflow](images/eosfomo.png)
-
-> **Figure 1.** As shown in the image below, the bonus displayed on the website became negative after the attack
-
-<br/>
-
-### Severity & Financial Impact
-
-In this incident, over 60,686 EOS were stolen from
-ordinary users.
-
-| Attacker Account | Victim Account | Tokens Stolen | Dollars Lost  
-| ------ | ------ | ------ | ------
-| Unknown | Fomo3D18 | 60,686 EOS | $ 158,997.32
-
-<br/>
 
 ## References
+
 - [Certified Blockchain Security Professional (CBSP)](https://blockchaintrainingalliance.com/products/blockchain-security-training-on-demand)
 - [A Security Case Study for Blockchain Games ](https://ieeexplore.ieee.org/document/8811555)
 - [The Ultimate Guide to EOS Contract Security](https://blockgeeks.com/guides/eos-smart-contract-security/)

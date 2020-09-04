@@ -1,4 +1,3 @@
-<br/>
 
 ## Name: Missing Assertion Check
 
@@ -10,13 +9,14 @@
 
 ## Background
 
-**eosio.assert** roots from the EOSIO Assert Contract which is a security feature made to reduce the need for users to trust blockchain apps when a user signs a transaction for a trusted blockchain network with a trusted wallet application
+Transactions not satisfying certain constraints can be made to fail using the **eosio::check** function inside the smart contract code.
+A transaction that throws an assertion error will be completely rolled back by the node and never applied to the blockchain.
 
 ### Summary
 
-Smart contracts rely on a set of assumptions which require assertions to be met before users or external contracts are allowed to execute actions. Failure to use **eosio_assert** will mean the conditions required beforehand will be bypassed and be powerless to stop the execution of the specific action if the assertions fails
+Smart contracts rely on a set of assumptions which require assertions to be met before users or external contracts are allowed to execute actions. Failure to use **eosio::checl** will mean the conditions required beforehand will be bypassed and be powerless to stop the execution of the specific action if the assertions fails.
 
-<br/>
+
 
 ## Vulnerability
 

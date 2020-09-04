@@ -1,4 +1,4 @@
-<br/>
+
 
 ## Name: Denial of Service
 
@@ -17,16 +17,14 @@ Within EOSIO, blocks are created 500 milliseconds apart. To help ensure that Blo
 
 Some EOSIO chains come with a _free CPU leeway_ feature that allows accounts to consume more than their allotted resources if the overall network usage is low. Before this limit is reached, all users can freely transact on the network as it is not in **“congestion mode.”** Once this limit is passed, users are **throttled** back to their **pro-rata share** of the **total CPU-per-staked-EOS allotment**
 
-<br/>
 
-Example
+
+#### Example
+
 > If there are **10,000 EOS tokens** being staked for **CPU** on **EOS** at a given moment, and Alice's account (an EOS whale) has **930 EOS tokens staked**, then Alice is guaranteed **9.3%** of the **total CPU capacity of the network**. If the network is being heavily used or suffering from a DoS attack, surpassing the **threshold** at which **rate limiting is activated**, Alice would not be able to exceed the guaranteed transaction rate allotted to her by her stake.
-
-<br/>
 
 Every EOS account has 2 separate values: **used CPU** and **total allowed CPU**. During a period when EOS is not in **congestion mode**, the **total allowed CPU** can fluctuate wildly. The actual CPU leeway multiplier is a chain parameter and it can happen that users are allowed to use 1000 times more CPU than in congestion mode. The image below demonstrates this fluctuation when the chain allows **20.6 ms.** of available compute _(left)_ one moment, to **11.8 ms.** of available compute _(right)_, the very next. 
 
-<br/>
 
 ![rate limiting](images/rate_limiting.png)
 
@@ -34,16 +32,16 @@ Every EOS account has 2 separate values: **used CPU** and **total allowed CPU**.
 
 ### Summary
 
-Carefully crafted token contracts such as _EIDOS - Everyone is Denied of Service_ with airdrop patterns that entice rational actors on the EOS blockchain to generate nonutilitarian network traffic that causes performance degradation for all other users.
-
-Degraded performance of EOS transactions due to an inadequate share of CPU staking in the face of a massive increase in network activity related 
-to a token airdrop.
+Users relying on the EOSIO free CPU leeway feature on an EOSIO chain that is underused will see their available CPU time reduced once the network gets used more and the free CPU time reduces.
+Without any free CPU resources their available CPU is restricted to their share of staked system tokens.
 
 ## Detailed Description
 
 ## Attack 
 
 ### Replication 
+
+> This assumes the network is **not** in "_congestion mode_" yet and users receive more resources than their pro-rata share of staked system resources allows.
 
 1. An EOS user sends a minimum of 0.0001 EOS to a Denial of Service Token Drop contract
 
@@ -83,13 +81,9 @@ to a token airdrop.
     * It is no longer profitable to collect the airdrops 
     * The sizeable _leases_ taken out of the **REX contract** expire (30 days) && the leasers **don’t renew** their _lease_
 
-## Vulnerability
 
-An attacker exploits the native EOSIO design choices by designing an airdrop contract that doesn’t take into account a minimum EOS threshold to be sent. Instead, the airdrop contract is _a spam-generating machine_ as it is designed to generate maximum transactions that cost users time but not money. 
+### Sample Code
 
-Once users are refunded the EOS sent to the airdrop token contract, they are incentivized to send the EOS immediately back to the token contract due to the _incremental arbritage_ motive to do more actions rather than spend more money. In essence, such a contract is designed to test the capacity of EOSIO itself.
-
-### Sample Code 
 A sample **claim** action that encourages users to essentially spam the EOS network in return for a small monetary incentive
 
 ```c++
@@ -163,6 +157,7 @@ A sample **claim** action that encourages users to essentially spam the EOS netw
 > **Figure 5:** The first "transfer"_n refunds EOS while the final  "transfer"_n airdrops EIDOS the sample token
 
 ## Remediation
+
 ### Risk Reduction
 
 * Victims like large cryptocurrency exchanges can respond to the network issue by increasing the amount of staked CPU in their wallets, to unblock customer transactions
