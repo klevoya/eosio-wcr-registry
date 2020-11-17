@@ -22,7 +22,7 @@ public:
 
   ACTION insert(name user, std::string display_name) {
     users_t users_table(get_self(), get_self().value);
-    users_table.emplace(get_self(), [&](auto &x) {
+    users_table.emplace(user, [&](auto &x) {
       x.username = user;
       x.display_name = display_name;
     });
