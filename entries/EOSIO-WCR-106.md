@@ -103,6 +103,5 @@ The result is that the attacker’s forged EOS tokens are deemed sufficient, to 
 
 ## References
 
-- [EOSIO Vulnerability Detection Patterns by Klevoya](https://docs.google.com/document/d/1QrXKrDzmIAModdIMk2Cq3gVa5Zmll9ZUZvZCZ7z-KeQ/edit#heading=h.b62lza9e4c5i)
 - [Security Analysis of EOSIO Smart Contracts by EOSAFE](https://arxiv.org/abs/2003.06568)
 - [Detecting Fake Transfer Vulnerabilities for EOSIO’s Smart Contracts at Webassembly-level by EVulHunter](https://arxiv.org/pdf/1906.10362)
